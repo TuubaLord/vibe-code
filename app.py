@@ -55,5 +55,15 @@ def pdf_detail(pdf_id):
     comments = Comment.query.filter_by(pdf_id=pdf_id).order_by(Comment.timestamp.desc()).all()
     return render_template('pdf_detail.html', pdf=pdf, comments=comments)
 
+
+@app.route('/comment/<int:comment_id>/delete', methods=['POST'])
+def delete_comment(comment_id):
+    """Remove a comment and redirect back to its PDF detail page."""
+    comment = Comment.query.get_or_404(comment_id)
+    pdf_id = comment.pdf_id
+    db.session.delete(comment)
+    db.session.commit()
+    return redirect(url_for('pdf_detail', pdf_id=pdf_id))
+
 if __name__ == '__main__':
     app.run(debug=True)
