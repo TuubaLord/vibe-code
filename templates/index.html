@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="{{ url_for('add_pdf') }}">Add PDF</a>
+<ul>
+{% for pdf in pdfs %}
+  <li><a href="{{ url_for('pdf_detail', pdf_id=pdf.id) }}">{{ pdf.title }}</a></li>
+{% else %}
+  <li>No PDFs added yet.</li>
+{% endfor %}
+</ul>
+{% endblock %}
