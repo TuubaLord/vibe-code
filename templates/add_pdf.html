@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="post">
+  <label>Title: <input type="text" name="title" required></label><br>
+  <label>PDF URL: <input type="url" name="url" required></label><br>
+  <label>Initial Comment:<br><textarea name="comment"></textarea></label><br>
+  <button type="submit">Add PDF</button>
+</form>
+{% endblock %}
